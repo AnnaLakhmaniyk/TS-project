@@ -1,0 +1,23 @@
+{
+  "name": "ts-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnnaLakhmaniyk/TS-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnnaLakhmaniyk/TS-project/issues"
+  },
+  "homepage": "https://github.com/AnnaLakhmaniyk/TS-project#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
