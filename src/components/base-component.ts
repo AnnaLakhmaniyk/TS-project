@@ -1,43 +1,39 @@
 //components Base class
-namespace App {
-  export abstract class Component<
-    T extends HTMLElement,
-    U extends HTMLElement
-  > {
-    templateElem: HTMLTemplateElement;
-    hostElem: T;
-    element: U;
 
-    constructor(
-      templateId: string,
-      hostElementId: string,
-      insertAtStart: boolean,
-      newElementId?: string
-    ) {
-      this.templateElem = document.getElementById(
-        templateId
-      )! as HTMLTemplateElement;
-      this.hostElem = document.getElementById(hostElementId)! as T;
+export abstract class Component<T extends HTMLElement, U extends HTMLElement> {
+  templateElem: HTMLTemplateElement;
+  hostElem: T;
+  element: U;
 
-      const importedNode = document.importNode(this.templateElem.content, true);
+  constructor(
+    templateId: string,
+    hostElementId: string,
+    insertAtStart: boolean,
+    newElementId?: string
+  ) {
+    this.templateElem = document.getElementById(
+      templateId
+    )! as HTMLTemplateElement;
+    this.hostElem = document.getElementById(hostElementId)! as T;
 
-      this.element = importedNode.firstElementChild as U;
+    const importedNode = document.importNode(this.templateElem.content, true);
 
-      if (newElementId) {
-        this.element.id = newElementId;
-      }
+    this.element = importedNode.firstElementChild as U;
 
-      this.attach(insertAtStart);
+    if (newElementId) {
+      this.element.id = newElementId;
     }
 
-    private attach(insertAtBeginning: boolean) {
-      this.hostElem.insertAdjacentElement(
-        insertAtBeginning ? "afterbegin" : "beforeend",
-        this.element
-      );
-    }
-
-    abstract configure(): void;
-    abstract renderContent(): void;
+    this.attach(insertAtStart);
   }
+
+  private attach(insertAtBeginning: boolean) {
+    this.hostElem.insertAdjacentElement(
+      insertAtBeginning ? "afterbegin" : "beforeend",
+      this.element
+    );
+  }
+
+  abstract configure(): void;
+  abstract renderContent(): void;
 }
